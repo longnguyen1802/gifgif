@@ -1,11 +1,10 @@
 import { useState } from 'react';
 
-import NavHeader from './components/NavHeader';
 import Footer from './components/Footer';
 
 import UploadStep from './components/UploadStep';
 
-import Button from './components/Button';
+
 
 import StepSection from './components/StepSection';
 import StepHeader from './components/StepHeader';
@@ -18,24 +17,19 @@ import Image from './components/Image';
 import ImageSize from './components/ImageSize';
 
 import Slider from './components/Slider';
-import Loops from './components/Loops';
 import Export from './components/Export';
 
 // component props
-const logo = 'https://assets.kbsb.app/svg/kaboom_shebang_logo.svg';
-const logoMenu = 'https://assets.kbsb.app/svg/icon_hamburger.svg';
-const logoUrl = 'https://www.kaboomshebang.com';
-const title = 'kbsb GIF Creator';
+
+const title = 'GIF Creator';
 const subTitle = 'Create an animated GIF from still images';
-const placeholder = 'https://assets.kbsb.app/images/image-placeholder-grey-400px.png';
+const placeholder = 'https://images.assetsdelivery.com/compings_v2/yehorlisnyi/yehorlisnyi2104/yehorlisnyi210400016.jpg';
 
 function App() {
 	// component states
 	const [files, setFiles] = useState([]);
 	const [size, setSize] = useState({ width: 1000, height: 1000 });
-	const [duration, setDuration] = useState(2);
-	const [quality, setQuality] = useState(4);
-	const [loop, setLoop] = useState(0);
+	const [duration, setDuration] = useState(0.4);
 	const [ratios, setRatios] = useState([]);
 
 	const Images = () => {
@@ -73,7 +67,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<NavHeader logoUrl={logoUrl} logoIcon={logo} logoIconAlt="Kaboom Shebang" menuIcon={logoMenu} />
+
 			<UploadStep title={title} subTitle={subTitle} filesFunc={setFiles}></UploadStep>
 
 			{/* image sequence step */}
@@ -104,22 +98,17 @@ function App() {
 				</StepHeader>
 				<StepDescription
 					title="Frameduration"
-					description="The amount of time (in sec.) to stay on a frame (min: 1s, max 5s)."
+					description="The amount of time (in sec.) to stay on a frame (min: 0.1s, max 1s)."
 				></StepDescription>
 				<Slider
 					valueFunc={setDuration}
 					valueState={duration}
-					min="1"
-					max="5"
-					step="0.5"
-					default="1.5"
+					min="0.1"
+					max="1"
+					step="0.05"
+					default="0.4"
 					unit="seconds"
 				></Slider>
-				<StepDescription
-					title="Image quality"
-					description="A lower threshold value gives better quality results, but takes longer to generate (default: 4)."
-				></StepDescription>
-				<Slider valueFunc={setQuality} valueState={quality} min="1" max="5" step="1" default="4"></Slider>
 			</StepSection>
 
 			{/* Export sequence step */}
@@ -128,11 +117,6 @@ function App() {
 					<StepNumber number="4" color="#C89E9E"></StepNumber>
 					<StepTitle title="Export sequence to GIF"></StepTitle>
 				</StepHeader>
-				<StepDescription
-					title="Loop"
-					description="How many times should the animation loop. (Currently only possible to loop forever.)"
-				></StepDescription>
-				<Loops valueState={loop} loopFunc={setLoop}></Loops>
 				<StepDescription
 					title="Export"
 					description="Done! Click generate to start the process."
@@ -143,7 +127,6 @@ function App() {
 					width={size.width}
 					height={size.height}
 					duration={duration}
-					quality={quality}
 				></Export>
 			</StepSection>
 

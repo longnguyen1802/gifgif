@@ -35,10 +35,10 @@ class Export extends React.Component {
 			gifWidth: this.props.width,
 			gifHeight: this.props.height,
 			images: images,
-			frameDuration: this.props.duration * 10, // The amount of time (10 = 1s) to stay on each frame
-			sampleInterval: this.props.quality, // quality setting, lower is better quality // lowest is 1
-			numWorkers: 6, // number of web workers for processing frames
-			loop: 3,
+			numWorkers: 3,
+			interval: this.props.duration,
+			sampleInterval: 1,
+			numFrames: 1,
 		};
 
 		if (gifshot.isExistingImagesGIFSupported()) {
