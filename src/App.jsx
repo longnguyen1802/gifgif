@@ -130,7 +130,6 @@ function App() {
 				></Export>
 			</StepSection>
 
-			<Footer />
 		</div>
 	);
 }
